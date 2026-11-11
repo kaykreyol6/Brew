@@ -1,0 +1,13 @@
+{
+  "name": "BrewSmart — Inventory Forecasting",
+  "short_name": "BrewSmart",
+  "description": "AI inventory forecasting and ordering for independent coffee shops.",
+  "start_url": "../index.html#/dashboard",
+  "scope": "../",
+  "display": "standalone",
+  "background_color": "#FBF7F1",
+  "theme_color": "#9A5B1E",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
