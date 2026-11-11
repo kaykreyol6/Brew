@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Design tokens — one source of truth for colour, type, spacing and motion.
+   Light is the default; dark applies via OS preference or [data-theme].
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --brand: #9A5B1E;
+  --brand-strong: #7C4614;
+  --brand-soft: #F6E7D3;
+  --on-brand: #FFFFFF;
+
+  /* Surfaces */
+  --bg: #FBF7F1;
+  --surface: #FFFFFF;
+  --surface-2: #F6EFE5;
+  --surface-3: #EFE5D6;
+  --overlay: rgba(28, 16, 8, 0.45);
+
+  /* Text */
+  --text: #2A1A0C;
+  --text-2: #5E4B3B;
+  --text-3: #8A7764;
+
+  /* Lines */
+  --border: #E7DACA;
+  --border-strong: #D6C4AE;
+  --focus: #C27A2C;
+
+  /* Status */
+  --success: #2D7349;
+  --success-soft: #E2F2E7;
+  --warning: #8F5A00;
+  --warning-soft: #FBEFD6;
+  --danger: #B0341A;
+  --danger-soft: #FBE5DF;
+  --info: #2B5797;
+  --info-soft: #E4ECF8;
+
+  /* Charts */
+  --chart-1: #B87332;
+  --chart-1-muted: #E3C7A4;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: 0.75rem;   /* 12 */
+  --fs-sm: 0.8125rem; /* 13 */
+  --fs-md: 0.9375rem; /* 15 */
+  --fs-lg: 1.125rem;  /* 18 */
+  --fs-xl: 1.375rem;  /* 22 */
+  --fs-2xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --fs-kpi: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+
+  /* Spacing (4px scale) */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --gutter: clamp(16px, 2.5vw, 32px);
+
+  /* Shape & depth */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(42, 26, 12, 0.06);
+  --shadow: 0 1px 2px rgba(42, 26, 12, 0.05), 0 4px 16px rgba(42, 26, 12, 0.06);
+  --shadow-lg: 0 12px 40px rgba(42, 26, 12, 0.18);
+
+  /* Layout */
+  --sidebar-w: 264px;
+  --topbar-h: 60px;
+  --bottomnav-h: 64px;
+  --content-max: 1280px;
+  --tap: 44px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur: 180ms;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand: #E2A65A;
+    --brand-strong: #F0BC78;
+    --brand-soft: rgba(226, 166, 90, 0.14);
+    --on-brand: #1A1006;
+    --bg: #15100A;
+    --surface: #1F1811;
+    --surface-2: #281F16;
+    --surface-3: #33281C;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --text: #F7EEDF;
+    --text-2: #CDBDA7;
+    --text-3: #978670;
+    --border: #3A2E21;
+    --border-strong: #4D3E2D;
+    --focus: #F0BC78;
+    --success: #6FCF97;
+    --success-soft: rgba(111, 207, 151, 0.13);
+    --warning: #F2C366;
+    --warning-soft: rgba(242, 195, 102, 0.13);
+    --danger: #FF8A6B;
+    --danger-soft: rgba(255, 138, 107, 0.13);
+    --info: #8FB4FF;
+    --info-soft: rgba(143, 180, 255, 0.13);
+    --chart-1: #E2A65A;
+    --chart-1-muted: rgba(226, 166, 90, 0.35);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --brand: #E2A65A;
+  --brand-strong: #F0BC78;
+  --brand-soft: rgba(226, 166, 90, 0.14);
+  --on-brand: #1A1006;
+  --bg: #15100A;
+  --surface: #1F1811;
+  --surface-2: #281F16;
+  --surface-3: #33281C;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --text: #F7EEDF;
+  --text-2: #CDBDA7;
+  --text-3: #978670;
+  --border: #3A2E21;
+  --border-strong: #4D3E2D;
+  --focus: #F0BC78;
+  --success: #6FCF97;
+  --success-soft: rgba(111, 207, 151, 0.13);
+  --warning: #F2C366;
+  --warning-soft: rgba(242, 195, 102, 0.13);
+  --danger: #FF8A6B;
+  --danger-soft: rgba(255, 138, 107, 0.13);
+  --info: #8FB4FF;
+  --info-soft: rgba(143, 180, 255, 0.13);
+  --chart-1: #E2A65A;
+  --chart-1-muted: rgba(226, 166, 90, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
