@@ -1,0 +1,122 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05080d;--cyan:#22e4ff;--mint:#4dffb5;--txt:#e8f4f8;--mut:#7f95a3;--glass:rgba(255,255,255,.045);--line:rgba(140,220,255,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:Inter,sans-serif;color:var(--txt);position:relative}
+.grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 60% 50%,#000 30%,transparent 85%);opacity:.55}
+.glow1{position:absolute;width:1100px;height:1100px;left:820px;top:-200px;background:radial-gradient(circle,rgba(34,228,255,.22),transparent 60%);filter:blur(30px)}
+.glow2{position:absolute;width:900px;height:900px;left:1150px;top:420px;background:radial-gradient(circle,rgba(77,255,181,.16),transparent 60%);filter:blur(30px)}
+.glow3{position:absolute;width:700px;height:700px;left:-200px;top:500px;background:radial-gradient(circle,rgba(34,228,255,.10),transparent 60%)}
+.left{position:absolute;left:120px;top:0;bottom:0;width:700px;display:flex;flex-direction:column;justify-content:center;z-index:5}
+.logo{display:flex;align-items:center;gap:18px;margin-bottom:48px}
+.mark{width:68px;height:68px;border-radius:18px;background:linear-gradient(135deg,var(--cyan),var(--mint));display:grid;place-items:center;box-shadow:0 0 50px rgba(34,228,255,.5)}
+.mark svg{width:38px;height:38px}
+.logo span{font-size:38px;font-weight:800;letter-spacing:-.02em}
+.logo b{background:linear-gradient(90deg,var(--cyan),var(--mint));-webkit-background-clip:text;color:transparent}
+.pill{display:inline-flex;align-self:flex-start;gap:10px;align-items:center;padding:10px 20px;border:1px solid rgba(77,255,181,.35);border-radius:99px;font:500 18px 'JetBrains Mono';color:var(--mint);background:rgba(77,255,181,.07);margin-bottom:30px}
+.pill i{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--mint)}
+h1{font-size:80px;line-height:1.02;font-weight:800;letter-spacing:-.035em;margin-bottom:30px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--mint));-webkit-background-clip:text;color:transparent}
+.sub{font-size:26px;line-height:1.5;color:var(--mut);max-width:560px}
+.tags{display:flex;gap:10px;margin-top:44px;flex-wrap:wrap}
+.tags div{padding:10px 16px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,.08);font-size:18px;color:#b9cbd4}
+.stage{position:absolute;left:820px;top:110px;perspective:2400px;z-index:4}
+.win{width:1180px;height:860px;border-radius:26px;background:linear-gradient(160deg,rgba(20,32,44,.92),rgba(8,14,22,.95));border:1px solid rgba(140,220,255,.18);box-shadow:0 60px 140px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.03) inset,0 0 120px rgba(34,228,255,.12);transform:rotateY(-14deg) rotateX(6deg) rotateZ(1deg);transform-origin:left center;overflow:hidden;display:flex;flex-direction:column}
+.bar{height:56px;display:flex;align-items:center;gap:10px;padding:0 22px;border-bottom:1px solid rgba(255,255,255,.06)}
+.bar i{width:13px;height:13px;border-radius:50%;background:#2a3a48}
+.url{margin-left:24px;flex:0 0 420px;height:32px;border-radius:9px;background:rgba(255,255,255,.05);font:500 15px 'JetBrains Mono';color:var(--mut);display:flex;align-items:center;padding:0 14px;gap:8px}
+.url b{color:var(--mint);font-weight:500}
+.body{flex:1;display:flex}
+.side{width:84px;border-right:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;align-items:center;gap:22px;padding-top:26px}
+.side div{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.05)}
+.side div.on{background:rgba(34,228,255,.15);box-shadow:0 0 0 1px rgba(34,228,255,.5) inset,0 0 20px rgba(34,228,255,.25)}
+.main{flex:1;padding:26px;display:grid;grid-template-columns:330px 1fr 1fr;grid-template-rows:300px 1fr;gap:20px}
+.card{background:var(--glass);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px;backdrop-filter:blur(14px);position:relative;overflow:hidden}
+.card h4{font-size:15px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.09em;margin-bottom:14px}
+.score{display:flex;flex-direction:column;align-items:center}
+.gauge{position:relative;width:200px;height:200px}
+.gauge .n{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.gauge .n b{font-size:62px;font-weight:800;letter-spacing:-.03em;display:block;line-height:1}
+.gauge .n small{font-size:15px;color:var(--mint);font-weight:600}
+.laws{grid-column:2/4;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:22px}
+.laws h4{grid-column:1/-1;margin-bottom:0}
+.law{border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.law p{font-size:16px;font-weight:600}
+.law span{font-size:13px;color:var(--mut)}
+.heat{grid-column:1/3;padding:22px}
+.wf{position:absolute;left:22px;right:22px;top:58px;bottom:22px;border-radius:14px;background:#0a121b;border:1px solid rgba(255,255,255,.06);overflow:hidden}
+.wf .r{position:absolute;border-radius:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06)}
+.hm{position:absolute;border-radius:50%;filter:blur(26px);mix-blend-mode:screen}
+.legend{position:absolute;right:36px;top:22px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mut)}
+.legend i{width:120px;height:8px;border-radius:9px;background:linear-gradient(90deg,#0b3b52,var(--cyan),var(--mint),#fff27a,#ff6b6b)}
+.issues{padding:22px;display:flex;flex-direction:column;gap:12px}
+.iss{display:flex;gap:12px;align-items:flex-start;padding:13px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:6px}
+.iss b{display:block;font-size:15px;font-weight:600;margin-bottom:3px}
+.iss span{font-size:13px;color:var(--mut);line-height:1.35}
+.bars{display:flex;align-items:flex-end;gap:7px;height:88px;margin-top:6px}
+.bars div{flex:1;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,var(--cyan),rgba(34,228,255,.15))}
+.bars div.m{background:linear-gradient(180deg,var(--mint),rgba(77,255,181,.15))}
+.float{position:absolute;z-index:6;border-radius:18px;background:rgba(14,24,34,.78);border:1px solid rgba(140,220,255,.25);backdrop-filter:blur(18px);box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 40px rgba(34,228,255,.12);padding:18px 22px}
+</style></head><body>
+<div class="grid"></div><div class="glow1"></div><div class="glow2"></div><div class="glow3"></div>
+
+<div class="left">
+  <div class="logo"><div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#04131a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v8a7 7 0 0 0 14 0V4"/><circle cx="12" cy="12" r="2" fill="#04131a"/></svg></div><span>UXI<b>Friendly</b></span></div>
+  <div class="pill"><i></i>AI-POWERED UX AUDITS</div>
+  <h1>Automated <em>UX heuristic</em> audits in minutes.</h1>
+  <p class="sub">Paste a URL. Get a scored report on usability, cognitive load and the psychology laws behind every interaction.</p>
+  <div class="tags"><div>Nielsen’s 10 Heuristics</div><div>Laws of UX</div><div>Cognitive Load</div><div>WCAG</div></div>
+</div>
+
+<div class="stage"><div class="win">
+  <div class="bar"><i></i><i></i><i></i><div class="url"><b>●</b> uxifriendly.com/audit/acme-checkout</div></div>
+  <div class="body">
+    <div class="side"><div class="on"></div><div></div><div></div><div></div><div></div></div>
+    <div class="main">
+      <div class="card score"><h4 style="align-self:flex-start">UX Health Score</h4>
+        <div class="gauge"><svg viewBox="0 0 200 200" width="200" height="200"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22e4ff"/><stop offset="1" stop-color="#4dffb5"/></linearGradient><filter id="f"><feGaussianBlur stdDeviation="4"/></filter></defs>
+          <circle cx="100" cy="100" r="82" stroke="rgba(255,255,255,.07)" stroke-width="14" fill="none"/>
+          <circle cx="100" cy="100" r="82" stroke="url(#g)" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="448 515" transform="rotate(-90 100 100)" filter="url(#f)" opacity=".7"/>
+          <circle cx="100" cy="100" r="82" stroke="url(#g)" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="448 515" transform="rotate(-90 100 100)"/></svg>
+          <div class="n"><div><b>87</b><small>▲ 12 pts</small></div></div></div>
+      </div>
+      <div class="card laws"><h4>Psychology Laws</h4>
+        <div class="law"><svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="34" stroke="rgba(255,255,255,.07)" stroke-width="8" fill="none"/><circle cx="43" cy="43" r="34" stroke="#ff8a6b" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="124 214" transform="rotate(-90 43 43)" style="filter:drop-shadow(0 0 6px #ff8a6b)"/><text x="43" y="50" text-anchor="middle" fill="#e8f4f8" font-family="Inter" font-weight="800" font-size="21">58</text></svg><p>Hick’s Law</p><span>Needs work</span></div><div class="law"><svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="34" stroke="rgba(255,255,255,.07)" stroke-width="8" fill="none"/><circle cx="43" cy="43" r="34" stroke="#fff27a" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="154 214" transform="rotate(-90 43 43)" style="filter:drop-shadow(0 0 6px #fff27a)"/><text x="43" y="50" text-anchor="middle" fill="#e8f4f8" font-family="Inter" font-weight="800" font-size="21">72</text></svg><p>Fitts’s Law</p><span>Fair</span></div><div class="law"><svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="34" stroke="rgba(255,255,255,.07)" stroke-width="8" fill="none"/><circle cx="43" cy="43" r="34" stroke="#4dffb5" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="194 214" transform="rotate(-90 43 43)" style="filter:drop-shadow(0 0 6px #4dffb5)"/><text x="43" y="50" text-anchor="middle" fill="#e8f4f8" font-family="Inter" font-weight="800" font-size="21">91</text></svg><p>Miller’s Law</p><span>Strong</span></div><div class="law"><svg width="86" height="86" viewBox="0 0 86 86"><circle cx="43" cy="43" r="34" stroke="rgba(255,255,255,.07)" stroke-width="8" fill="none"/><circle cx="43" cy="43" r="34" stroke="#22e4ff" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="205 214" transform="rotate(-90 43 43)" style="filter:drop-shadow(0 0 6px #22e4ff)"/><text x="43" y="50" text-anchor="middle" fill="#e8f4f8" font-family="Inter" font-weight="800" font-size="21">96</text></svg><p>Jakob’s Law</p><span>Strong</span></div>
+      </div>
+      <div class="card heat"><h4>Cognitive Load Heatmap</h4><div class="legend">Low<i></i>High</div>
+        <div class="wf">
+          <div class="r" style="left:20px;top:18px;width:120px;height:22px"></div>
+          <div class="r" style="right:20px;top:18px;width:260px;height:22px"></div>
+          <div class="r" style="left:20px;top:64px;width:330px;height:28px"></div>
+          <div class="r" style="left:20px;top:102px;width:250px;height:14px"></div>
+          <div class="r" style="left:20px;top:140px;width:140px;height:40px;background:rgba(34,228,255,.18)"></div>
+          <div class="r" style="left:380px;top:64px;width:260px;height:170px"></div>
+          <div class="r" style="left:20px;top:200px;width:105px;height:60px"></div>
+          <div class="r" style="left:135px;top:200px;width:105px;height:60px"></div>
+          <div class="r" style="left:250px;top:200px;width:105px;height:60px"></div>
+          <div class="hm" style="left:300px;top:0px;width:260px;height:110px;background:rgba(255,107,107,.55)"></div>
+          <div class="hm" style="left:420px;top:90px;width:220px;height:150px;background:rgba(255,242,122,.4)"></div>
+          <div class="hm" style="left:0px;top:120px;width:220px;height:110px;background:rgba(77,255,181,.5)"></div>
+          <div class="hm" style="left:150px;top:190px;width:260px;height:100px;background:rgba(34,228,255,.45)"></div>
+        </div>
+      </div>
+      <div class="card issues"><h4>Top Findings</h4>
+        <div class="iss"><i class="dot" style="background:#ff6b6b;box-shadow:0 0 10px #ff6b6b"></i><div><b>Hick’s Law · Nav overload</b><span>14 top-level choices. Group into ≤ 7.</span></div></div>
+        <div class="iss"><i class="dot" style="background:#fff27a;box-shadow:0 0 10px #fff27a"></i><div><b>Fitts’s Law · Small CTA</b><span>Primary button 32px. Target ≥ 44px.</span></div></div>
+        <div class="iss"><i class="dot" style="background:var(--mint);box-shadow:0 0 10px var(--mint)"></i><div><b>Jakob’s Law · Pass</b><span>Checkout matches familiar patterns.</span></div></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<div class="float" style="left:1460px;top:820px;width:330px">
+  <div style="font-size:14px;color:var(--mut);text-transform:uppercase;letter-spacing:.09em;font-weight:600">Nielsen Heuristics</div>
+  <div class="bars"><div style="height:80%"></div><div class="m" style="height:95%"></div><div style="height:62%"></div><div class="m" style="height:88%"></div><div style="height:45%"></div><div class="m" style="height:92%"></div><div style="height:70%"></div><div class="m" style="height:84%"></div><div style="height:58%"></div><div class="m" style="height:76%"></div></div>
+</div>
+<div class="float" style="left:760px;top:760px;display:flex;align-items:center;gap:14px">
+  <div style="width:44px;height:44px;border-radius:12px;background:rgba(77,255,181,.15);display:grid;place-items:center;color:var(--mint);font-size:24px;font-weight:800">✓</div>
+  <div><div style="font-size:18px;font-weight:700">Audit complete</div><div style="font-size:14px;color:var(--mut)">142 checks · 38 sec</div></div>
+</div>
+</body></html>
